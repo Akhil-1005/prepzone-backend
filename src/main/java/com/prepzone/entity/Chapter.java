@@ -15,9 +15,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table
-public class Subject extends BaseEntity{
+public class Chapter  extends BaseEntity{
+  
 	
-
 	private String subjectName;
-
+	private String chapterName;
 }
