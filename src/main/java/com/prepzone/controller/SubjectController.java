@@ -51,7 +51,7 @@ public class SubjectController {
 	    return ResponseEntity.status(httpStatus).body(response);
 	}
 
-    // ✅ READ - Get by ID
+
     @GetMapping("/get/{id}")
     public ResponseEntity<ResponseModel<Subject>> getSubjectById(@PathVariable UUID id) {
         log.info("Begin SubjectController -> getSubjectById()");
@@ -61,7 +61,6 @@ public class SubjectController {
         return ResponseEntity.status(httpStatus).body(response);
     }
 
-    // ✅ UPDATE
     @PutMapping("/update/{id}")
     public ResponseEntity<ResponseModel<Subject>> updateSubject(
             @PathVariable UUID id,
@@ -75,7 +74,7 @@ public class SubjectController {
         return ResponseEntity.status(httpStatus).body(response);
     }
 
-    // ✅ DELETE
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ResponseModel<String>> deleteSubject(@PathVariable UUID id) {
         log.info("Begin SubjectController -> deleteSubject()");
