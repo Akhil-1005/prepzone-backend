@@ -133,7 +133,7 @@ public class QuestionServiceImpl implements QuestionService {
         ResponseModel<List<QuestionDTO>> response = new ResponseModel<>();
         try {
             log.info("Begin QuestionServiceImpl -> getQuestionsByChapter()");
-            List<Question> questions = questionRepository.findByChapter(chapterId);
+            List<Question> questions = questionRepository.findByChapter_Id(chapterId);
             List<QuestionDTO> questionDTOs = questions.stream()
                     .map(this::mapToDTO)
                     .collect(Collectors.toList());

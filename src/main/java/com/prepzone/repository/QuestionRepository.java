@@ -12,5 +12,5 @@ import com.prepzone.entity.Question;
 public interface QuestionRepository extends JpaRepository<Question, UUID> {
    
 
-	List<Question> findByChapter(UUID chapterId);
+	List<Question> findByChapter_Id(UUID chapterId);
 }

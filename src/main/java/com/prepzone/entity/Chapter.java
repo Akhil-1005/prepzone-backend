@@ -24,6 +24,7 @@ public class Chapter  extends BaseEntity{
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
+	
 	private String chapterName;
 }
 
