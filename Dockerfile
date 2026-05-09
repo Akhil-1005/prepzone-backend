@@ -28,4 +28,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=60s \
   CMD wget --no-verbose --tries=1 --spider http://localhost:${PORT:-8272}/prepzone/actuator/health || exit 1
 
 # CRITICAL: Render uses $PORT environment variable
-ENTRYPOINT ["sh", "-c", "java -Xmx512m -jar app.jar --server.port=${PORT:-8272}"]
+ENTRYPOINT ["sh", "-c", "java -Xmx512m -Djava.net.preferIPv4Stack=true -jar app.jar --server.port=${PORT:-8272}"]
