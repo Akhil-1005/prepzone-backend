@@ -45,18 +45,21 @@ public class QuestionServiceImpl implements QuestionService {
             question.setDifficulty(dto.getDifficulty());
             question.setChapter(chapter);
             question.setCreatedBy(userId);
+            question.setQuestionType(dto.getQuestionType() != null ? dto.getQuestionType() : "MCQ");
+            question.setCorrectAnswer(dto.getCorrectAnswer());
 
-            List<Option> options = dto.getOptions().stream()
-                    .map(optDto -> {
-                        Option opt = new Option();
-                        opt.setOptionText(optDto.getOptionText());
-                        opt.setCorrect(optDto.isCorrect());
-                        opt.setQuestion(question);
-                        opt.setCreatedBy(userId);
-                        return opt;
-                    }).collect(Collectors.toList());
-
-            question.setOptions(options);
+            if ("MCQ".equalsIgnoreCase(question.getQuestionType()) && dto.getOptions() != null) {
+                List<Option> options = dto.getOptions().stream()
+                        .map(optDto -> {
+                            Option opt = new Option();
+                            opt.setOptionText(optDto.getOptionText());
+                            opt.setCorrect(optDto.isCorrect());
+                            opt.setQuestion(question);
+                            opt.setCreatedBy(userId);
+                            return opt;
+                        }).collect(Collectors.toList());
+                question.setOptions(options);
+            }
             Question saved = questionRepository.save(question);
 
             response.setData(mapToDTO(saved));
@@ -82,19 +85,22 @@ public class QuestionServiceImpl implements QuestionService {
             question.setQuestionText(dto.getQuestionText());
             question.setExplanation(dto.getExplanation());
             question.setDifficulty(dto.getDifficulty());
+            question.setQuestionType(dto.getQuestionType() != null ? dto.getQuestionType() : "MCQ");
+            question.setCorrectAnswer(dto.getCorrectAnswer());
 
             question.getOptions().clear();
-            List<Option> updatedOptions = dto.getOptions().stream()
-                    .map(optDto -> {
-                        Option opt = new Option();
-                        opt.setOptionText(optDto.getOptionText());
-                        opt.setCorrect(optDto.isCorrect());
-                        opt.setQuestion(question);
-                        opt.setCreatedBy(userId);
-                        return opt;
-                    }).collect(Collectors.toList());
-
-            question.getOptions().addAll(updatedOptions);
+            if ("MCQ".equalsIgnoreCase(question.getQuestionType()) && dto.getOptions() != null) {
+                List<Option> updatedOptions = dto.getOptions().stream()
+                        .map(optDto -> {
+                            Option opt = new Option();
+                            opt.setOptionText(optDto.getOptionText());
+                            opt.setCorrect(optDto.isCorrect());
+                            opt.setQuestion(question);
+                            opt.setCreatedBy(userId);
+                            return opt;
+                        }).collect(Collectors.toList());
+                question.getOptions().addAll(updatedOptions);
+            }
             Question updated = questionRepository.save(question);
 
             response.setData(mapToDTO(updated));
@@ -174,6 +180,8 @@ public class QuestionServiceImpl implements QuestionService {
                 .questionText(q.getQuestionText())
                 .explanation(q.getExplanation())
                 .difficulty(q.getDifficulty())
+                .questionType(q.getQuestionType())
+                .correctAnswer(q.getCorrectAnswer())
                 .chapterId(q.getChapter().getId())
                 .options(q.getOptions().stream()
                         .map(opt -> OptionDTO.builder()

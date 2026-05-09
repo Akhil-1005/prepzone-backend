@@ -33,7 +33,13 @@ public class Question extends BaseEntity {
     private String explanation;
 
     @Column(name="difficulty")
-    private String difficulty; 
+    private String difficulty;
+
+    @Column(name = "question_type", nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'MCQ'")
+    private String questionType = "MCQ";
+
+    @Column(name = "correct_answer")
+    private String correctAnswer;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chapter_id", nullable = false)

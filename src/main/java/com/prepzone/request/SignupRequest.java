@@ -19,7 +19,9 @@ public class SignupRequest {
 
     private String phoneNumber;
     
-    private String address;
+    private String subjectName;
+    
+    private String workExperince;
     
     private String profilePic;
     

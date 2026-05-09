@@ -17,6 +17,8 @@ public class QuestionDTO {
     private String questionText;
     private String explanation;
     private String difficulty;
+    private String questionType;
+    private String correctAnswer;
     private UUID chapterId;
     private List<OptionDTO> options;
 }

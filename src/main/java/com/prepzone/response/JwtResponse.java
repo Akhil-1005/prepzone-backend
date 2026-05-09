@@ -9,6 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
 public class JwtResponse {
     
     private String token;
@@ -18,6 +19,7 @@ public class JwtResponse {
     private String email;
     private String phoneNumber;
     private String address;
+    private String refreshToken;
     private Role role;
     
     public JwtResponse(String accessToken, UUID id, String userName, String email, 
@@ -30,4 +32,8 @@ public class JwtResponse {
         this.address = address;
         this.role = role;
     }
+
+		// TODO Auto-generated method stub
+		
+	
 }

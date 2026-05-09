@@ -27,8 +27,12 @@ public class User extends BaseEntity
     @Column(name="email")
     private String email;
     
-    @Column(name = "deviceName")
-    private String deviceName;
+    @Column(name="subject_name")
+    private String subjectName;
+    
+    @Column(name="work_experience")
+    private String workExperince;
+    
     
     @Column(name="role")
     @Enumerated(EnumType.STRING)

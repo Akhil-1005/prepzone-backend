@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prepzone.entity.Chapter;
+import com.prepzone.response.ChapterBasicProjection;
 import com.prepzone.service.ChapterService;
 import com.prepzone.util.HttpStatusCode;
 import com.prepzone.util.ResponseModel;
@@ -24,7 +25,7 @@ import com.prepzone.util.ResponseModel;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/api/chapters")
+@RequestMapping("/chapter")
 @Slf4j
 public class ChapterController {
 
@@ -46,9 +47,9 @@ public class ChapterController {
     }
 
     @GetMapping("/subject/{subjectId}")
-    public ResponseEntity<ResponseModel<List<Chapter>>> getChaptersBySubject(@PathVariable UUID subjectId) {
+    public ResponseEntity<ResponseModel<List<ChapterBasicProjection>>> getChaptersBySubject(@PathVariable UUID subjectId) {
         log.info("Begin ChapterController -> getChaptersBySubject()");
-        ResponseModel<List<Chapter>> response = chapterService.getChaptersBySubject(subjectId);
+        ResponseModel<List<ChapterBasicProjection>> response = chapterService.getChaptersBySubject(subjectId);
         log.info("End ChapterController -> getChaptersBySubject()");
         HttpStatus httpStatus = httpStatusCode.getHttpStatusFromCode(response.getStatusCode());
         return ResponseEntity.status(httpStatus).body(response);

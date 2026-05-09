@@ -10,6 +10,7 @@ import com.prepzone.entity.Chapter;
 import com.prepzone.entity.Subject;
 import com.prepzone.repository.ChapterRepository;
 import com.prepzone.repository.SubjectRepository;
+import com.prepzone.response.ChapterBasicProjection;
 import com.prepzone.service.ChapterService;
 import com.prepzone.util.ResponseModel;
 
@@ -48,11 +49,11 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
 	@Override
-	public ResponseModel<List<Chapter>> getChaptersBySubject(UUID subjectId) {
-		 ResponseModel<List<Chapter>> response = new ResponseModel<>();
+	public ResponseModel<List<ChapterBasicProjection>> getChaptersBySubject(UUID subjectId) {
+		 ResponseModel<List<ChapterBasicProjection>> response = new ResponseModel<>();
 	        try {
 	            log.info("Begin ChapterService -> getChaptersBySubject()");
-	            List<Chapter> chapters = chapterRepository.findBySubjectId(subjectId);
+	            List<ChapterBasicProjection> chapters = chapterRepository.findBySubjectId(subjectId);
 	            response.setData(chapters);
 	            response.setStatusCode(HttpStatus.OK.toString());
 	            response.setMessage("Chapters fetched successfully");
