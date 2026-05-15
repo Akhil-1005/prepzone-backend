@@ -53,7 +53,7 @@ public class QuestionServiceImpl implements QuestionService {
                         .map(optDto -> {
                             Option opt = new Option();
                             opt.setOptionText(optDto.getOptionText());
-                            opt.setCorrect(optDto.isCorrect());
+                            opt.setCorrect(Boolean.TRUE.equals(optDto.getIsCorrect()));
                             opt.setQuestion(question);
                             opt.setCreatedBy(userId);
                             return opt;
@@ -94,7 +94,7 @@ public class QuestionServiceImpl implements QuestionService {
                         .map(optDto -> {
                             Option opt = new Option();
                             opt.setOptionText(optDto.getOptionText());
-                            opt.setCorrect(optDto.isCorrect());
+                            opt.setCorrect(Boolean.TRUE.equals(optDto.getIsCorrect()));
                             opt.setQuestion(question);
                             opt.setCreatedBy(userId);
                             return opt;
