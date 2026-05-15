@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 public class OptionDTO {
     private UUID id;
     private String optionText;
-    private boolean isCorrect;
+    private Boolean isCorrect;
 }
